@@ -34,14 +34,16 @@
 (defn part1 [inp]
   (->> inp
        str/split-lines
-       (map first-last-nums)
-       (reduce +)))
+       (transduce
+        (map first-last-nums)
+        +)))
 
 (defn part2 [inp]
   (->> inp
        str/split-lines
-       (map first-last-nums-2)
-       (reduce +)))
+       (transduce
+        (map first-last-nums-2)
+        +)))
 
 #_(part1 (slurp (clojure.java.io/resource "day01.txt")))
 #_(part2 (slurp (clojure.java.io/resource "day01.txt")))
