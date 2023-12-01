@@ -20,12 +20,10 @@
 
 (defn first-last-nums-2 [s]
   (let [f (->> s
-               (re-seq #"\d|one|two|three|four|five|six|seven|eight|nine")
-               first)
+               (re-find #"\d|one|two|three|four|five|six|seven|eight|nine"))
         l (->> s
                str/reverse
-               (re-seq #"\d|eno|owt|eerht|ruof|evif|xis|neves|thgie|enin")
-               first
+               (re-find #"\d|eno|owt|eerht|ruof|evif|xis|neves|thgie|enin")
                str/reverse)
         nf   (if (contains? lookup f) (lookup f) f)
         nl   (if (contains? lookup l) (lookup l) l)]
