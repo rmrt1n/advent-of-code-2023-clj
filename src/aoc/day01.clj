@@ -12,22 +12,21 @@
    "eight" "8"
    "nine"  "9"})
 
+(def re "one|two|three|four|five|six|seven|eight|nine")
+
 (defn first-last-nums [s]
-  (let [nums (re-seq #"\d" s)
-        f    (first nums)
-        l    (last nums)]
-    (Integer/parseInt (str f l))))
+  (let [nums (re-seq #"\d" s)]
+    (parse-long (str (first nums) (last nums)))))
 
 (defn first-last-nums-2 [s]
-  (let [f (->> s
-               (re-find #"\d|one|two|three|four|five|six|seven|eight|nine"))
+  (let [f (re-find (re-pattern (str "\\d|" re)) s)
         l (->> s
                str/reverse
-               (re-find #"\d|eno|owt|eerht|ruof|evif|xis|neves|thgie|enin")
+               (re-find (re-pattern (str "\\d|" (str/reverse re))))
                str/reverse)
         nf   (if (contains? lookup f) (lookup f) f)
         nl   (if (contains? lookup l) (lookup l) l)]
-    (Integer/parseInt (str nf nl))))
+    (parse-long (str nf nl))))
 
 (defn part1 [inp]
   (->> inp
