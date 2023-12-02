@@ -5,7 +5,7 @@
             [clojure.string :as str]))
 
 (deftest day01
-  (testing "part 1"
+  (testing "day 1 - part 1"
     (is (= 142
            (day01/part1 (str/join "\n"
                                   ["1abc2"
@@ -15,7 +15,7 @@
     (is (= 55090
            (day01/part1 (slurp (io/resource "day01.txt"))))))
 
-  (testing "part 2"
+  (testing "day 1 - part 2"
     (is (= 281
            (day01/part2 (str/join "\n"
                                   ["two1nine"

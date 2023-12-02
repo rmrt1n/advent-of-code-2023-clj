@@ -12,13 +12,13 @@
    "Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green"])
 
 (deftest day02
-  (testing "part 1"
+  (testing "day 2 - part 1"
     (is (= 8
            (day02/part1 (str/join "\n" example-inp))))
     (is (= 2164
            (day02/part1 (slurp (io/resource "day02.txt"))))))
 
-  (testing "part 2"
+  (testing "day 2 - part 2"
     (is (= 2286
            (day02/part2 (str/join "\n" example-inp))))
     (is (= 69929
