@@ -1,13 +1,15 @@
 (ns aoc.day04
-  (:require [clojure.string :as str]))
+  (:require [clojure.string :as str]
+            [clojure.set :as set]))
 
 (defn count-winning [s]
-  (let [[winning owned] (map #(re-seq #"\d+" %) (str/split s #"\|"))
-        winning (rest (map parse-long winning))
-        owned   (map parse-long owned)]
-    (->> owned
-         (filter #(some (hash-set %) winning))
-         count)))
+  (let [[winning owned] (transduce
+                         (comp (map #(re-seq #"\d+" %))
+                               (map #(mapv parse-long %))
+                               (map set))
+                         conj
+                         (rest (re-find #"(?<=: )(.*)\|(.*)" s)))]
+    (count (set/intersection winning owned))))
 
 (defn rec-count [coll]
   (loop [[first' & rest'] coll
@@ -24,9 +26,8 @@
        str/split-lines
        (transduce
         (comp (map count-winning)
-              (map dec)
-              (filter #(not (neg? %)))
-              (map #(int (Math/pow 2 %))))
+              (filter #(not (zero? %)))
+              (map #(int (Math/pow 2 (dec %)))))
         +)))
 
 (defn part2 [inp]
