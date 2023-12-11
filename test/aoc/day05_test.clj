@@ -40,13 +40,13 @@
    "56 93 4"])
 
 (deftest day05
-  (testing "day 4 - part 1"
+  (testing "day 5 - part 1"
     (is (= 35
            (day05/part1 (str/join "\n" example-inp))))
     (is (= 177942185
            (day05/part1 (slurp (io/resource "day05.txt"))))))
 
-  (testing "day 4 - part 2"
+  (testing "day 5 - part 2"
     (is (= 46
            (day05/part2 (str/join "\n" example-inp))))
     ;; not working yet
